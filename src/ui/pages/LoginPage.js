@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class LoginPage extends BasePage {
@@ -65,13 +65,15 @@ export class LoginPage extends BasePage {
 
   async assertErrorVisible() {
     await this.step('Assert error message is visible', async () => {
-      await expect(this.page.getByRole('heading', { name: 'Error!' })).toBeVisible();
+      const errorHeading = this.page.getByRole('heading', { name: 'Error!' });
+      await expect(errorHeading).toBeVisible();
     });
   }
 
   async assertLoggedIn() {
     await this.step('Assert user is logged in', async () => {
-      await expect(this.page.getByRole('link', { name: 'Log Out' })).toBeVisible();
+      const logOutLink = this.page.getByRole('link', { name: 'Log Out' });
+      await expect(logOutLink).toBeVisible();
     });
   }
 

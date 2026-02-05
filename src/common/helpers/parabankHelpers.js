@@ -3,5 +3,6 @@
  * Use this to skip tests when the demo site is unstable.
  */
 export async function isParabankErrorPage(page) {
-  return page.getByRole('heading', { name: 'Error!' }).isVisible().catch(() => false);
+  const heading = page.getByRole('heading', { name: 'Error!' });
+  return heading.isVisible().catch(() => false);
 }

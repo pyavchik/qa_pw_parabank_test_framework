@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class ForgotLoginPage extends BasePage {
@@ -58,14 +58,19 @@ export class ForgotLoginPage extends BasePage {
 
   async assertLookupFormVisible() {
     await this.step('Assert lookup form is visible', async () => {
-      await expect(this.page.getByRole('heading', { name: 'Customer Lookup' })).toBeVisible();
+      const heading = this.page.getByRole('heading', {
+        name: 'Customer Lookup',
+      });
+      await expect(heading).toBeVisible();
       await expect(this.findLoginInfoButton).toBeVisible();
     });
   }
 
   async assertUsernameRetrieved(username) {
-    await this.step(`Assert username ${username} is displayed`, async () => {
-      await expect(this.page.getByText(new RegExp(`Username:.*${username}`, 'i'))).toBeVisible();
+    const msg = `Assert username ${username} is displayed`;
+    await this.step(msg, async () => {
+      const pattern = new RegExp(`Username:.*${username}`, 'i');
+      await expect(this.page.getByText(pattern)).toBeVisible();
     });
   }
 

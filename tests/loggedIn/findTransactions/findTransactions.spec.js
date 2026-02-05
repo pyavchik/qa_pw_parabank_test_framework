@@ -5,16 +5,16 @@ import { isParabankErrorPage } from '../../../src/common/helpers/parabankHelpers
 test.describe('Find Transactions', () => {
   test('should display find transactions form', async ({
     page,
-    loggedInUser,
+    loggedInUser: _loggedInUser,
     findTransactionsPage,
   }) => {
     addSeverity('normal');
 
     await test.step('Navigate to find transactions page', async () => {
-      await page.goto('https://parabank.parasoft.com/parabank/findtrans.htm');
-      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
+      await page.goto('/parabank/findtrans.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (await isParabankErrorPage(page)) {
-        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
+        // eslint-disable-next-line playwright/no-skipped-test
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });
@@ -32,7 +32,7 @@ test.describe('Find Transactions', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length === 0, 'No accounts available');
 
     await test.step('Navigate to find transactions page', async () => {

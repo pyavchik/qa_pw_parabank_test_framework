@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class RequestLoanPage extends BasePage {
@@ -55,13 +55,17 @@ export class RequestLoanPage extends BasePage {
 
   async assertLoanApproved() {
     await this.step('Assert loan approved', async () => {
-      await expect(this.page.getByRole('heading', { name: /Loan Request Processed|Approved/i })).toBeVisible();
+      const heading = this.page.getByRole('heading', {
+        name: /Loan Request Processed|Approved/i,
+      });
+      await expect(heading).toBeVisible();
     });
   }
 
   async assertLoanDenied() {
     await this.step('Assert loan denied', async () => {
-      await expect(this.page.getByText(/denied|has been denied/i)).toBeVisible();
+      const denied = this.page.getByText(/denied|has been denied/i);
+      await expect(denied).toBeVisible();
     });
   }
 

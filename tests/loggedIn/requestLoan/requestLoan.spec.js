@@ -5,16 +5,16 @@ import { isParabankErrorPage } from '../../../src/common/helpers/parabankHelpers
 test.describe('Request Loan', () => {
   test('should display request loan form', async ({
     page,
-    loggedInUser,
+    loggedInUser: _loggedInUser,
     requestLoanPage,
   }) => {
     addSeverity('normal');
 
     await test.step('Navigate to request loan page', async () => {
-      await page.goto('https://parabank.parasoft.com/parabank/requestloan.htm');
-      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
+      await page.goto('/parabank/requestloan.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (await isParabankErrorPage(page)) {
-        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
+        // eslint-disable-next-line playwright/no-skipped-test
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });
@@ -32,7 +32,7 @@ test.describe('Request Loan', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length === 0, 'No accounts available');
 
     await test.step('Navigate to request loan page', async () => {
@@ -44,7 +44,9 @@ test.describe('Request Loan', () => {
     });
 
     await test.step('Verify loan result', async () => {
-      const approved = page.getByRole('heading', { name: /Loan.*Processed|Approved/i });
+      const approved = page.getByRole('heading', {
+        name: /Loan.*Processed|Approved/i,
+      });
       const denied = page.getByText(/denied/i);
       await expect(approved.or(denied)).toBeVisible();
     });
@@ -59,7 +61,7 @@ test.describe('Request Loan', () => {
       addSeverity('normal');
 
       const accountIds = loggedInUser.accountIds;
-      // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
+      // eslint-disable-next-line playwright/no-skipped-test
       test.skip(accountIds.length === 0, 'No accounts available');
 
       await test.step('Navigate to request loan page', async () => {
@@ -67,12 +69,15 @@ test.describe('Request Loan', () => {
       });
 
       await test.step(`Request loan of ${loanAmount}`, async () => {
-        await requestLoanPage.requestLoan(loanAmount, loanAmount * 0.2, accountIds[0]);
+        const downPayment = loanAmount * 0.2;
+        const accountId = accountIds[0];
+        await requestLoanPage.requestLoan(loanAmount, downPayment, accountId);
       });
 
       await test.step('Verify loan result displayed', async () => {
         const result = page.locator('#rightPanel');
-        await expect(result).toContainText(/Loan|Amount|Payment|Denied|Approved/i);
+        const regex = /Loan|Amount|Payment|Denied|Approved/i;
+        await expect(result).toContainText(regex);
       });
     });
   }

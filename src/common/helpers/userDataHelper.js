@@ -12,7 +12,8 @@ export function generateRegistrationData(overrides = {}) {
   const zipCode = faker.location.zipCode();
   const phone = faker.phone.number();
   const ssn = faker.string.numeric(9);
-  const username = faker.internet.username({ firstName, lastName }).slice(0, 20);
+  const rawUsername = faker.internet.username({ firstName, lastName });
+  const username = rawUsername.slice(0, 20);
   const password = faker.internet.password({ length: 10 });
 
   return {

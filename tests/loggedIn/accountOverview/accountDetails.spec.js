@@ -11,7 +11,7 @@ test.describe('Account Details & Activity Filtering', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length === 0, 'No accounts available');
 
     await test.step('Navigate to accounts overview', async () => {
@@ -38,7 +38,7 @@ test.describe('Account Details & Activity Filtering', () => {
     addSeverity('normal');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length === 0, 'No accounts available');
 
     await test.step('Navigate to account details', async () => {

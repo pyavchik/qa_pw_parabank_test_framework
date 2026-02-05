@@ -2,7 +2,11 @@ import { test, expect } from '../../_fixtures/fixtures';
 import { addSeverity } from '../../../src/common/helpers/allureHelpers';
 
 test.describe('Forgot Login Info', () => {
-  test('should navigate to customer lookup page', async ({ page, loginPage, forgotLoginPage }) => {
+  test('should navigate to customer lookup page', async ({
+    page,
+    loginPage,
+    forgotLoginPage,
+  }) => {
     addSeverity('normal');
 
     await test.step('Navigate to login page', async () => {

@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class AccountsOverviewPage extends BasePage {
@@ -43,12 +43,14 @@ export class AccountsOverviewPage extends BasePage {
   }
 
   get accountsOverviewLink() {
-    return this.page.getByRole('link', { name: /Accounts Overview|Account Services/i });
+    const name = /Accounts Overview|Account Services/i;
+    return this.page.getByRole('link', { name });
   }
 
   async clickAccountLink(accountId) {
     await this.step(`Click account link for ${accountId}`, async () => {
-      const link = this.page.locator('#accountTable tbody tr td:nth-child(1) a').first();
+      const selector = '#accountTable tbody tr td:nth-child(1) a';
+      const link = this.page.locator(selector).first();
       await link.click();
     });
   }
@@ -61,9 +63,9 @@ export class AccountsOverviewPage extends BasePage {
 
   async assertAccountsOverviewVisible() {
     await this.step('Assert Accounts Overview is visible', async () => {
-      await expect(
-        this.page.getByRole('heading', { name: /Account.*Overview|Accounts Overview|Account Services/i }),
-      ).toBeVisible({ timeout: 8000 });
+      const re = /Account.*Overview|Accounts Overview|Account Services/i;
+      const heading = this.page.getByRole('heading', { name: re });
+      await expect(heading).toBeVisible({ timeout: 8000 });
     });
   }
 
@@ -80,7 +82,8 @@ export class AccountsOverviewPage extends BasePage {
   }
 
   async getAccountIds() {
-    const links = await this.page.locator('#accountTable a[href*="activity"]').all();
+    const selector = '#accountTable a[href*="activity"]';
+    const links = await this.page.locator(selector).all();
     const ids = [];
     for (const link of links) {
       const text = await link.textContent();

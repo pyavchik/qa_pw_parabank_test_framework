@@ -27,7 +27,8 @@ export function parseTestTreeHierarchy(fileName, logger) {
   const suite = attributes[1] || 'General';
   const subSuite = attributes.length > 2 ? attributes[2] : null;
 
-  logger.debug(`Parsed test hierarchy: ${JSON.stringify([parentSuite, suite, subSuite])}`);
+  const hierarchy = JSON.stringify([parentSuite, suite, subSuite]);
+  logger.debug(`Parsed test hierarchy: ${hierarchy}`);
 
   return [parentSuite, suite, subSuite];
 }

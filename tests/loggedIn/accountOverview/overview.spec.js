@@ -11,10 +11,10 @@ test.describe('Account Overview', () => {
     addSeverity('critical');
 
     await test.step('Navigate to accounts overview', async () => {
-      await page.goto('https://parabank.parasoft.com/parabank/overview.htm');
-      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
+      await page.goto('/parabank/overview.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (await isParabankErrorPage(page)) {
-        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
+        // eslint-disable-next-line playwright/no-skipped-test
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });
@@ -33,10 +33,10 @@ test.describe('Account Overview', () => {
     addSeverity('critical');
 
     await test.step('Navigate to accounts overview', async () => {
-      await page.goto('https://parabank.parasoft.com/parabank/overview.htm');
-      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
+      await page.goto('/parabank/overview.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (await isParabankErrorPage(page)) {
-        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
+        // eslint-disable-next-line playwright/no-skipped-test
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });

@@ -11,7 +11,7 @@ test.describe('Transfer Funds', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when insufficient accounts
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length < 2, 'Need at least 2 accounts for transfer');
 
     await test.step('Navigate to transfer funds page', async () => {
@@ -36,6 +36,7 @@ test.describe('Transfer Funds', () => {
       addSeverity('normal');
 
       const accountIds = loggedInUser.accountIds;
+      // eslint-disable-next-line playwright/no-skipped-test
       test.skip(accountIds.length < 2, 'Need at least 2 accounts for transfer');
 
       await test.step('Navigate to transfer funds page', async () => {
@@ -43,7 +44,8 @@ test.describe('Transfer Funds', () => {
       });
 
       await test.step(`Transfer $${amount} between accounts`, async () => {
-        await transferFundsPage.transferFunds(accountIds[0], accountIds[1], amount);
+        const [from, to] = [accountIds[0], accountIds[1]];
+        await transferFundsPage.transferFunds(from, to, amount);
       });
 
       await test.step('Verify transfer completed', async () => {
@@ -60,10 +62,10 @@ test.describe('Transfer Funds', () => {
     addSeverity('normal');
 
     await test.step('Navigate to transfer funds page', async () => {
-      await page.goto('https://parabank.parasoft.com/parabank/transfer.htm');
-      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
+      await page.goto('/parabank/transfer.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (await isParabankErrorPage(page)) {
-        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
+        // eslint-disable-next-line playwright/no-skipped-test
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });

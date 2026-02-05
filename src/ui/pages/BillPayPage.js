@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class BillPayPage extends BasePage {
@@ -84,7 +84,10 @@ export class BillPayPage extends BasePage {
 
   async assertPaymentComplete() {
     await this.step('Assert bill payment complete', async () => {
-      await expect(this.page.getByRole('heading', { name: /Bill Payment Complete/i })).toBeVisible();
+      const heading = this.page.getByRole('heading', {
+        name: /Bill Payment Complete/i,
+      });
+      await expect(heading).toBeVisible();
     });
   }
 

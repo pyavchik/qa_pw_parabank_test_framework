@@ -6,7 +6,7 @@ test.describe('Log Out', () => {
     page,
     loginPage,
     accountsOverviewPage,
-    loggedInUser,
+    loggedInUser: _loggedInUser,
   }) => {
     addSeverity('critical');
 

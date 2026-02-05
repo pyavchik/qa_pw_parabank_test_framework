@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class RegisterPage extends BasePage {
@@ -77,11 +77,17 @@ export class RegisterPage extends BasePage {
   }
 
   async assertWelcomeMessageVisible(username) {
-    await this.step(`Assert welcome message or redirect for ${username}`, async () => {
-      const welcomeHeading = this.page.getByRole('heading', { name: /Welcome/i });
-      const overviewHeading = this.page.getByRole('heading', { name: /Account.*Overview|Accounts/i });
+    const msg = `Assert welcome message or redirect for ${username}`;
+    await this.step(msg, async () => {
+      const welcomeHeading = this.page.getByRole('heading', {
+        name: /Welcome/i,
+      });
+      const overviewHeading = this.page.getByRole('heading', {
+        name: /Account.*Overview|Accounts/i,
+      });
       const userText = this.page.getByText(new RegExp(username));
-      await expect(welcomeHeading.or(overviewHeading).or(userText)).toBeVisible({ timeout: 10000 });
+      const combined = welcomeHeading.or(overviewHeading).or(userText);
+      await expect(combined).toBeVisible({ timeout: 10000 });
     });
   }
 

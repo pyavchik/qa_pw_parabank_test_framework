@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class OpenNewAccountPage extends BasePage {
@@ -44,7 +44,10 @@ export class OpenNewAccountPage extends BasePage {
 
   async assertAccountOpenedSuccess() {
     await this.step('Assert account opened successfully', async () => {
-      await expect(this.page.getByRole('heading', { name: /Account Opened/i })).toBeVisible();
+      const heading = this.page.getByRole('heading', {
+        name: /Account Opened/i,
+      });
+      await expect(heading).toBeVisible();
     });
   }
 

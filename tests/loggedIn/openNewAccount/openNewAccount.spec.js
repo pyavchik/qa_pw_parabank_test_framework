@@ -10,7 +10,7 @@ test.describe('Open New Account', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts to fund
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length === 0, 'No accounts available for funding');
 
     await test.step('Navigate to open new account page', async () => {
@@ -34,7 +34,7 @@ test.describe('Open New Account', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts to fund
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length === 0, 'No accounts available for funding');
 
     await test.step('Navigate to open new account page', async () => {

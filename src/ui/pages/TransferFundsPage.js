@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class TransferFundsPage extends BasePage {
@@ -55,7 +55,10 @@ export class TransferFundsPage extends BasePage {
 
   async assertTransferComplete() {
     await this.step('Assert transfer completed', async () => {
-      await expect(this.page.getByRole('heading', { name: /Transfer Complete/i })).toBeVisible();
+      const heading = this.page.getByRole('heading', {
+        name: /Transfer Complete/i,
+      });
+      await expect(heading).toBeVisible();
     });
   }
 

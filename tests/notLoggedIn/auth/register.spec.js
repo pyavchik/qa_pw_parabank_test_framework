@@ -25,10 +25,9 @@ test.describe('Register', () => {
     });
   });
 
-  test('should show validation error when registering with empty required fields', async ({
-    page,
-    registerPage,
-  }) => {
+  test('should show validation error for empty required fields', async (
+    { page, registerPage },
+  ) => {
     addSeverity('normal');
 
     await test.step('Navigate to register page', async () => {
@@ -39,15 +38,14 @@ test.describe('Register', () => {
       await registerPage.clickRegister();
     });
 
-    await test.step('Verify form remains visible (validation blocks submit)', async () => {
+    await test.step('Verify form remains visible', async () => {
       await registerPage.assertRegisterFormVisible();
     });
   });
 
-  test('should show validation error when password and confirm do not match', async ({
-    page,
-    registerPage,
-  }) => {
+  test('should show error when password and confirm do not match', async (
+    { page, registerPage },
+  ) => {
     addSeverity('normal');
 
     const data = generateRegistrationData();
@@ -57,13 +55,15 @@ test.describe('Register', () => {
     });
 
     await test.step('Fill form with mismatched passwords', async () => {
-      await registerPage.fillRegistrationForm({ ...data, password: 'Pass123!' });
+      const formData = { ...data, password: 'Pass123!' };
+      await registerPage.fillRegistrationForm(formData);
       await registerPage.confirmPasswordInput.fill('DifferentPass1!');
       await registerPage.clickRegister();
     });
 
-    await test.step('Verify validation error or form still visible', async () => {
-      await expect(registerPage.registerButton).toBeVisible();
+    await test.step('Verify form still visible', async () => {
+      const btn = registerPage.registerButton;
+      await expect(btn).toBeVisible();
     });
   });
 });

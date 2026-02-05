@@ -12,7 +12,7 @@ test.describe('Bill Pay', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
-    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
+    // eslint-disable-next-line playwright/no-skipped-test
     test.skip(accountIds.length === 0, 'No accounts available');
 
     const payeeData = {
@@ -47,10 +47,10 @@ test.describe('Bill Pay', () => {
     addSeverity('normal');
 
     await test.step('Navigate to bill pay page', async () => {
-      await page.goto('https://parabank.parasoft.com/parabank/billpay.htm');
-      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
+      await page.goto('/parabank/billpay.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (await isParabankErrorPage(page)) {
-        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
+        // eslint-disable-next-line playwright/no-skipped-test
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });

@@ -1,4 +1,4 @@
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect } from '../../common/helpers/pwHelpers';
 import { BasePage } from './BasePage';
 
 export class AccountDetailsPage extends BasePage {
@@ -35,11 +35,13 @@ export class AccountDetailsPage extends BasePage {
   }
 
   get goButton() {
-    return this.page.getByRole('button', { name: 'Find Transactions', exact: false });
+    const opts = { name: 'Find Transactions', exact: false };
+    return this.page.getByRole('button', opts);
   }
 
   async selectActivityPeriod(period) {
-    await this.step(`Select activity period: ${period}`, async () => {
+    const msg = `Select activity period: ${period}`;
+    await this.step(msg, async () => {
       await this.activityPeriodSelect.selectOption(period);
     });
   }
@@ -66,10 +68,13 @@ export class AccountDetailsPage extends BasePage {
     await this.step('Assert account details are visible', async () => {
       const onActivityPage = this.page.url().includes('activity.htm');
       if (onActivityPage) {
-        const accountOrTable = this.page.locator('#accountId, #transactionTable, table').first();
+        const sel = '#accountId, #transactionTable, table';
+        const accountOrTable = this.page.locator(sel).first();
         await expect(accountOrTable).toBeVisible({ timeout: 5000 });
       } else {
-        const overviewContent = this.page.getByText(/Account|Balance|Activity/).or(this.page.locator('table')).first();
+        const text = this.page.getByText(/Account|Balance|Activity/);
+        const table = this.page.locator('table');
+        const overviewContent = text.or(table).first();
         await expect(overviewContent).toBeVisible({ timeout: 5000 });
       }
     });
