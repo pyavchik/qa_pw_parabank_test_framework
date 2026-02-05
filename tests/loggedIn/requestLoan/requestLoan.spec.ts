@@ -1,6 +1,6 @@
 import { test, expect } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
-import { isParabankErrorPage } from '../../../src/common/helpers/parabankHelpers';
+import { addSeverity } from '@/common/helpers/allureHelpers';
+import { isParabankErrorPage } from '@/common/helpers/parabankHelpers';
 
 test.describe('Request Loan', () => {
   test('should display request loan form', async ({

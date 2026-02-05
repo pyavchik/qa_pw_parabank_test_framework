@@ -1,6 +1,6 @@
 import { test } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
-import { isParabankErrorPage } from '../../../src/common/helpers/parabankHelpers';
+import { addSeverity } from '@/common/helpers/allureHelpers';
+import { isParabankErrorPage } from '@/common/helpers/parabankHelpers';
 
 test.describe('Transfer Funds', () => {
   test('should transfer funds between accounts', async ({

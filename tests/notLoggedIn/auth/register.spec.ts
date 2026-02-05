@@ -1,6 +1,6 @@
 import { test, expect } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
-import { generateRegistrationData } from '../../../src/common/helpers/userDataHelper';
+import { addSeverity } from '@/common/helpers/allureHelpers';
+import { generateRegistrationData } from '@/common/helpers/userDataHelper';
 
 test.describe('Register', () => {
   test('should successfully register a new user with valid data', async ({

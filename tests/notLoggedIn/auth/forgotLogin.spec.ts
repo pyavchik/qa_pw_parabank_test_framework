@@ -1,6 +1,6 @@
 import { test, expect } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
-import type { LookupData } from '../../../src/common/helpers/userDataHelper';
+import { addSeverity } from '@/common/helpers/allureHelpers';
+import { LookupData } from '@/common/helpers/userDataHelper';
 
 test.describe('Forgot Login Info', () => {
   test('should navigate to customer lookup page', async ({

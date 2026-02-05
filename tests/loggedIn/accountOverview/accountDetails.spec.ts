@@ -1,5 +1,5 @@
 import { test } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
+import { addSeverity } from '@/common/helpers/allureHelpers';
 
 test.describe('Account Details & Activity Filtering', () => {
   test('should display account details when clicking account link', async ({

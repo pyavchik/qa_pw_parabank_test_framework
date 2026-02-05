@@ -1,5 +1,5 @@
 import { test, expect } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
+import { addSeverity } from '@/common/helpers/allureHelpers';
 
 test.describe('Sign In', () => {
   test('should successfully sign in with valid credentials', async ({

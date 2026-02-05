@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { BasePage } from './BasePage';
-import type { RegistrationData } from '../../common/helpers/userDataHelper';
+import type { RegistrationData } from '@/common/helpers/userDataHelper';
 
 export class RegisterPage extends BasePage {
   constructor(page: Page, userId = 0) {

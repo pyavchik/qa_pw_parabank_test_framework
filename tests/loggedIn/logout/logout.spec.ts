@@ -1,5 +1,5 @@
 import { test, expect } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
+import { addSeverity } from '@/common/helpers/allureHelpers';
 
 test.describe('Log Out', () => {
   test('should log out successfully', async ({

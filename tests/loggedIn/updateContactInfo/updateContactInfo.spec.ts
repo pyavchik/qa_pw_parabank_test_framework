@@ -1,6 +1,6 @@
 import { test } from '../../_fixtures/fixtures';
-import { addSeverity } from '../../../src/common/helpers/allureHelpers';
-import { isParabankErrorPage } from '../../../src/common/helpers/parabankHelpers';
+import { addSeverity } from '@/common/helpers/allureHelpers';
+import { isParabankErrorPage } from '@/common/helpers/parabankHelpers';
 import { faker } from '@faker-js/faker';
 
 test.describe('Update Contact Info', () => {

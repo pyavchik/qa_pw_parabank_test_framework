@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { BasePage } from './BasePage';
-import type { LookupData } from '../../common/helpers/userDataHelper';
+import type { LookupData } from '@/common/helpers/userDataHelper';
 
 export class ForgotLoginPage extends BasePage {
   constructor(page: Page, userId = 0) {
