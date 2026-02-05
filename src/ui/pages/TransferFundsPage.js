@@ -1,4 +1,4 @@
-import { expect } from '../../common/helpers/pwHelpers';
+import { expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class TransferFundsPage extends BasePage {
