@@ -9,6 +9,7 @@ export default [
     ignores: [
       '**/node_modules/*',
       'playwright.config.js',
+      'playwright.config.ts',
       '**/playwright-report/**',
     ],
   },
@@ -36,6 +37,6 @@ export default [
     rules: {
       'no-unused-vars': 'off',
     },
-    files: ['**/*.spec.js'],
+    files: ['**/*.spec.js', '**/*.spec.ts'],
   },
 ];

@@ -68,7 +68,7 @@ export const test = authTest.extend<{
       waitUntil: 'load',
       timeout: 30000,
     });
-    let accountIds = [];
+    let accountIds: string[] = [];
     if (page.url().includes('overview')) {
       accountIds = await accountsOverviewPage.getAccountIds();
     }
