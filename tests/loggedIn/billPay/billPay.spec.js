@@ -1,4 +1,4 @@
-import { test, expect } from '../../_fixtures/fixtures';
+import { test } from '../../_fixtures/fixtures';
 import { addSeverity } from '../../../src/common/helpers/allureHelpers';
 import { isParabankErrorPage } from '../../../src/common/helpers/parabankHelpers';
 import { faker } from '@faker-js/faker';
@@ -12,6 +12,7 @@ test.describe('Bill Pay', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
+    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
     test.skip(accountIds.length === 0, 'No accounts available');
 
     const payeeData = {
@@ -38,12 +39,18 @@ test.describe('Bill Pay', () => {
     });
   });
 
-  test('should display bill pay form', async ({ page, loggedInUser, billPayPage }) => {
+  test('should display bill pay form', async ({
+    page,
+    loggedInUser: _loggedInUser,
+    billPayPage,
+  }) => {
     addSeverity('normal');
 
     await test.step('Navigate to bill pay page', async () => {
       await page.goto('https://parabank.parasoft.com/parabank/billpay.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
       if (await isParabankErrorPage(page)) {
+        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });

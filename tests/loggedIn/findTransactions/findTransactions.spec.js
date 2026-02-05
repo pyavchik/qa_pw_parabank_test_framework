@@ -12,7 +12,9 @@ test.describe('Find Transactions', () => {
 
     await test.step('Navigate to find transactions page', async () => {
       await page.goto('https://parabank.parasoft.com/parabank/findtrans.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
       if (await isParabankErrorPage(page)) {
+        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });
@@ -30,6 +32,7 @@ test.describe('Find Transactions', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
+    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
     test.skip(accountIds.length === 0, 'No accounts available');
 
     await test.step('Navigate to find transactions page', async () => {

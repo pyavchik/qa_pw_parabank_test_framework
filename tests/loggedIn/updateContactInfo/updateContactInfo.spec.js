@@ -1,4 +1,4 @@
-import { test, expect } from '../../_fixtures/fixtures';
+import { test } from '../../_fixtures/fixtures';
 import { addSeverity } from '../../../src/common/helpers/allureHelpers';
 import { isParabankErrorPage } from '../../../src/common/helpers/parabankHelpers';
 import { faker } from '@faker-js/faker';
@@ -13,7 +13,9 @@ test.describe('Update Contact Info', () => {
 
     await test.step('Navigate to update profile page', async () => {
       await page.goto('https://parabank.parasoft.com/parabank/updateprofile.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
       if (await isParabankErrorPage(page)) {
+        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });
@@ -45,7 +47,9 @@ test.describe('Update Contact Info', () => {
 
     await test.step('Navigate to update profile page', async () => {
       await page.goto('https://parabank.parasoft.com/parabank/updateprofile.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
       if (await isParabankErrorPage(page)) {
+        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });

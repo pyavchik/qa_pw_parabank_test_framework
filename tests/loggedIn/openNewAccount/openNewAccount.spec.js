@@ -1,4 +1,4 @@
-import { test, expect } from '../../_fixtures/fixtures';
+import { test } from '../../_fixtures/fixtures';
 import { addSeverity } from '../../../src/common/helpers/allureHelpers';
 
 test.describe('Open New Account', () => {
@@ -10,6 +10,7 @@ test.describe('Open New Account', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
+    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts to fund
     test.skip(accountIds.length === 0, 'No accounts available for funding');
 
     await test.step('Navigate to open new account page', async () => {
@@ -33,6 +34,7 @@ test.describe('Open New Account', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
+    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts to fund
     test.skip(accountIds.length === 0, 'No accounts available for funding');
 
     await test.step('Navigate to open new account page', async () => {

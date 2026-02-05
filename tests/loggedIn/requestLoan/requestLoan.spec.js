@@ -12,7 +12,9 @@ test.describe('Request Loan', () => {
 
     await test.step('Navigate to request loan page', async () => {
       await page.goto('https://parabank.parasoft.com/parabank/requestloan.htm');
+      // eslint-disable-next-line playwright/no-conditional-in-test -- skip on demo backend error
       if (await isParabankErrorPage(page)) {
+        // eslint-disable-next-line playwright/no-skipped-test -- demo site flakiness
         test.skip(true, 'ParaBank demo backend returned error');
       }
     });
@@ -30,6 +32,7 @@ test.describe('Request Loan', () => {
     addSeverity('critical');
 
     const accountIds = loggedInUser.accountIds;
+    // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
     test.skip(accountIds.length === 0, 'No accounts available');
 
     await test.step('Navigate to request loan page', async () => {
@@ -56,6 +59,7 @@ test.describe('Request Loan', () => {
       addSeverity('normal');
 
       const accountIds = loggedInUser.accountIds;
+      // eslint-disable-next-line playwright/no-skipped-test -- skip when no accounts available
       test.skip(accountIds.length === 0, 'No accounts available');
 
       await test.step('Navigate to request loan page', async () => {
