@@ -3,7 +3,7 @@ import { camelCaseToPhrase, capitalize } from './stringHelpers';
 
 export function parseTestTreeHierarchy(
   fileName: string,
-  logger: { debug: (msg: string) => void }
+  logger: { debug: (_msg: string) => void }
 ): [string, string, string | null] {
   const testFolder = 'tests/';
   const index = fileName.indexOf(testFolder);

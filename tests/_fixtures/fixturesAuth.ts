@@ -8,7 +8,11 @@ export const test = baseTest.extend<{
   loginPage: LoginPage;
   registerPage: RegisterPage;
   forgotLoginPage: ForgotLoginPage;
-  registeredUser: { username: string; password: string; data: ReturnType<typeof generateRegistrationData> };
+  registeredUser: {
+    username: string;
+    password: string;
+    data: ReturnType<typeof generateRegistrationData>;
+  };
 }>({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
@@ -25,7 +29,7 @@ export const test = baseTest.extend<{
     await use(forgotLoginPage);
   },
 
-  registeredUser: async ({ page, loginPage, registerPage }, use) => {
+  registeredUser: async ({ page, registerPage }, use) => {
     const data = generateRegistrationData();
     await page.goto('/parabank/register.htm');
     await registerPage.fillRegistrationForm(data);

@@ -51,11 +51,15 @@ export const test = authTest.extend<{
     await use(new RequestLoanPage(page));
   },
 
-  loggedInUser: async ({ page, registeredUser, loginPage, accountsOverviewPage }, use) => {
+  loggedInUser: async (
+    { page, registeredUser, loginPage, accountsOverviewPage },
+    use,
+  ) => {
     const url = page.url();
-    const alreadyLoggedIn = url.includes('overview') || url.includes('openaccount');
+    const alreadyLoggedIn =
+      url.includes('overview') || url.includes('openaccount');
     if (!alreadyLoggedIn) {
-      await page.goto('https://parabank.parasoft.com/parabank/index.htm', {
+      await page.goto('/parabank/index.htm', {
         waitUntil: 'load',
         timeout: 30000,
       });

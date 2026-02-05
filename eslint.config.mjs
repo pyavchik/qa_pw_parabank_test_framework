@@ -30,7 +30,10 @@ export default [
     ...playwright.configs['flat/recommended'],
     rules: {
       ...pluginJs.configs.recommended.rules,
-      'no-unused-vars': 'error',
+      'no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
       'max-len': [
         'error',
         {
