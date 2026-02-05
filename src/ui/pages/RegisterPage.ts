@@ -56,7 +56,11 @@ export class RegisterPage extends BasePage {
     return this.page.getByRole('button', { name: 'Register' });
   }
 
-  async fillRegistrationForm(data: RegistrationData): Promise<void> {
+  async fillRegistrationForm(
+    data: RegistrationData,
+    options?: { confirmPassword?: string }
+  ): Promise<void> {
+    const confirmPassword = options?.confirmPassword ?? data.password;
     await this.step('Fill registration form', async () => {
       await this.firstNameInput.fill(data.firstName);
       await this.lastNameInput.fill(data.lastName);
@@ -68,7 +72,7 @@ export class RegisterPage extends BasePage {
       await this.ssnInput.fill(data.ssn);
       await this.usernameInput.fill(data.username);
       await this.passwordInput.fill(data.password);
-      await this.confirmPasswordInput.fill(data.password);
+      await this.confirmPasswordInput.fill(confirmPassword);
     });
   }
 

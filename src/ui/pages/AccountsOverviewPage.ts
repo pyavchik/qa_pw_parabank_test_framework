@@ -50,8 +50,7 @@ export class AccountsOverviewPage extends BasePage {
 
   async clickAccountLink(accountId: string): Promise<void> {
     await this.step(`Click account link for ${accountId}`, async () => {
-      const selector = '#accountTable tbody tr td:nth-child(1) a';
-      const link = this.page.locator(selector).first();
+      const link = this.page.getByRole('link', { name: accountId });
       await link.click();
     });
   }

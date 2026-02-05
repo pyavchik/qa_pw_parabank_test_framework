@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-import { expect, testStep } from '../../common/helpers/pwHelpers';
+import { expect, test } from '@playwright/test';
 
 export class BasePage {
   page: Page;
@@ -11,7 +11,9 @@ export class BasePage {
   }
 
   async step(title: string, stepToRun: () => Promise<void>): Promise<void> {
-    return await testStep(title, stepToRun, this.userId);
+    const stepTitle =
+      this.userId > 0 ? `User${this.userId}: ${title}` : title;
+    await test.step(stepTitle, stepToRun);
   }
 
   async navigate(path = '/'): Promise<void> {

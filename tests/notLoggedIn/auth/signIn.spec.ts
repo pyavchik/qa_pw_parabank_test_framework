@@ -1,4 +1,4 @@
-import { test, expect } from '../../_fixtures/fixtures';
+import { test } from '../../_fixtures/fixtures';
 import { addSeverity } from '@/common/helpers/allureHelpers';
 
 test.describe('Sign In', () => {
@@ -21,13 +21,7 @@ test.describe('Sign In', () => {
     });
 
     await test.step('Verify user is logged in', async () => {
-      const logOutLocator = page.getByRole('link', { name: 'Log Out' });
-      const logOutVisible = await logOutLocator.isVisible().catch(() => false);
-      const onOverview = page.url().includes('overview');
-      // eslint-disable-next-line playwright/no-conditional-in-test
-      const loggedIn = logOutVisible || onOverview;
-      const msg = 'User should be logged in';
-      expect(loggedIn, msg).toBeTruthy();
+      await loginPage.assertLoggedIn();
     });
   });
 
@@ -46,8 +40,7 @@ test.describe('Sign In', () => {
     });
 
     await test.step('Verify error is displayed', async () => {
-      const errorHeading = page.getByRole('heading', { name: 'Error!' });
-      await expect(errorHeading).toBeVisible();
+      await loginPage.assertErrorVisible();
     });
   });
 
@@ -69,8 +62,7 @@ test.describe('Sign In', () => {
     });
 
     await test.step('Verify error is displayed', async () => {
-      const errorHeading = page.getByRole('heading', { name: 'Error!' });
-      await expect(errorHeading).toBeVisible();
+      await loginPage.assertErrorVisible();
     });
   });
 

@@ -1,4 +1,4 @@
-import { test, expect } from '../../_fixtures/fixtures';
+import { test } from '../../_fixtures/fixtures';
 import { addSeverity } from '@/common/helpers/allureHelpers';
 import { generateRegistrationData } from '@/common/helpers/userDataHelper';
 
@@ -56,14 +56,14 @@ test.describe('Register', () => {
 
     await test.step('Fill form with mismatched passwords', async () => {
       const formData = { ...data, password: 'Pass123!' };
-      await registerPage.fillRegistrationForm(formData);
-      await registerPage.confirmPasswordInput.fill('DifferentPass1!');
+      await registerPage.fillRegistrationForm(formData, {
+        confirmPassword: 'DifferentPass1!',
+      });
       await registerPage.clickRegister();
     });
 
-    await test.step('Verify form still visible', async () => {
-      const btn = registerPage.registerButton;
-      await expect(btn).toBeVisible();
+    await test.step('Verify validation error is shown', async () => {
+      await registerPage.assertValidationErrorVisible();
     });
   });
 });

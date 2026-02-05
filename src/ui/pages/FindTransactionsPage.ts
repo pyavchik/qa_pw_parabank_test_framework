@@ -11,7 +11,7 @@ export class FindTransactionsPage extends BasePage {
     return this.page.locator('#accountId');
   }
 
-  get findByDateInput() {
+  get transactionIdInput() {
     return this.page.locator('#criteria\\.transactionId');
   }
 
@@ -43,7 +43,7 @@ export class FindTransactionsPage extends BasePage {
 
   async fillTransactionId(id: string): Promise<void> {
     await this.step(`Fill transaction ID: ${id}`, async () => {
-      await this.findByDateInput.fill(String(id));
+      await this.transactionIdInput.fill(String(id));
     });
   }
 
