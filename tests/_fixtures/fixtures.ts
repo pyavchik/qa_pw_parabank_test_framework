@@ -1,4 +1,4 @@
-import { mergeTests } from '@playwright/test';
-import { test as genericTest } from './fixturesGeneric';
+import { test as accountTest, expect } from './fixturesAccount';
 
-export const test = mergeTests(genericTest);
+export const test = accountTest;
+export { expect };
