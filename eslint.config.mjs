@@ -2,6 +2,8 @@ import globals from 'globals';
 import pluginJs from '@eslint/js';
 import playwright from 'eslint-plugin-playwright';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import parser from '@typescript-eslint/parser';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -15,6 +17,14 @@ export default [
   },
   { languageOptions: { globals: globals.node } },
   eslintConfigPrettier,
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parser,
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+    },
+    plugins: { '@typescript-eslint': tseslint },
+  },
   {
     ...pluginJs.configs.recommended,
     ...playwright.configs['flat/recommended'],
