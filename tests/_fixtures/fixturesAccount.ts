@@ -1,12 +1,12 @@
 import { test as authTest } from './fixturesAuth';
-import { AccountsOverviewPage } from '../../src/ui/pages/AccountsOverviewPage';
-import { AccountDetailsPage } from '../../src/ui/pages/AccountDetailsPage';
-import { OpenNewAccountPage } from '../../src/ui/pages/OpenNewAccountPage';
-import { TransferFundsPage } from '../../src/ui/pages/TransferFundsPage';
-import { BillPayPage } from '../../src/ui/pages/BillPayPage';
-import { FindTransactionsPage } from '../../src/ui/pages/FindTransactionsPage';
-import { UpdateContactInfoPage } from '../../src/ui/pages/UpdateContactInfoPage';
-import { RequestLoanPage } from '../../src/ui/pages/RequestLoanPage';
+import { AccountsOverviewPage } from '@/ui/pages/AccountsOverviewPage';
+import { AccountDetailsPage } from '@/ui/pages/AccountDetailsPage';
+import { OpenNewAccountPage } from '@/ui/pages/OpenNewAccountPage';
+import { TransferFundsPage } from '@/ui/pages/TransferFundsPage';
+import { BillPayPage } from '@/ui/pages/BillPayPage';
+import { FindTransactionsPage } from '@/ui/pages/FindTransactionsPage';
+import { UpdateContactInfoPage } from '@/ui/pages/UpdateContactInfoPage';
+import { RequestLoanPage } from '@/ui/pages/RequestLoanPage';
 
 export const test = authTest.extend<{
   accountsOverviewPage: AccountsOverviewPage;

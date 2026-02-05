@@ -1,8 +1,8 @@
 import { test as baseTest } from './fixturesGeneric';
-import { LoginPage } from '../../src/ui/pages/LoginPage';
-import { RegisterPage } from '../../src/ui/pages/RegisterPage';
-import { ForgotLoginPage } from '../../src/ui/pages/ForgotLoginPage';
-import { generateRegistrationData } from '../../src/common/helpers/userDataHelper';
+import { LoginPage } from '@/ui/pages/LoginPage';
+import { RegisterPage } from '@/ui/pages/RegisterPage';
+import { ForgotLoginPage } from '@/ui/pages/ForgotLoginPage';
+import { generateRegistrationData } from '@/common/helpers/userDataHelper';
 
 export const test = baseTest.extend<{
   loginPage: LoginPage;
